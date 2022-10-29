@@ -1,0 +1,36 @@
+
+.scroll-wrap{
+    padding: 2rem;
+    background-color: aliceblue;
+}
+.for-scroll{
+    overflow: auto;
+    height: 500px;
+}
+
+.for-scroll::-webkit-scrollbar {
+    height:20px;
+}
+
+.for-scroll::-webkit-scrollbar-track {
+    background: rgb(164, 173, 182);
+    scrollbar-width: 30px;
+}
+
+.for-scroll::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 6px;
+    border: 5px solid gray;
+}
+
+.page{
+    padding: 8px 12px;
+    display: inline-block;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+.ed-btn{
+    margin-right: 4px;
+}
