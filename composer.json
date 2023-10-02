@@ -2,7 +2,7 @@
     "name": "sharif/php-crud-starter-kit",
     "description": "This package will help to create simple CRUD application with PHP.",
     "require": {
-        "php": "7.4"
+        "php": "php: ^7.4 || ^8.0"
     },
     "license": "MIT",
     "autoload": {
