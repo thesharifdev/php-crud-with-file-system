@@ -1,0 +1,20 @@
+{
+    "name": "sharif/php-crud-starter-kit",
+    "description": "This package will help to create simple CRUD application with PHP.",
+    "require": {
+        "php": "7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sharif\\PhpCrudStarterKit\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "thesharifdev",
+            "email": "sharif.golang@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
