@@ -8,10 +8,9 @@ You can install this package via [Composer](https://getcomposer.org/):
 
 ```bash
 composer require sharif/php-crud-starter-kit
+```
 
-
-## Example
-
+## Example 
 ```bash
 <?php
 
