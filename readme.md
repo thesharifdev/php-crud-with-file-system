@@ -12,13 +12,10 @@ composer require sharif/php-crud-starter-kit
 
 ## Example 
 ```bash
-<?php
 
-require_once __DIR__ . '/src/App.php';
+$app = \Sharif\PhpCrudStarterKit\App::getInstance();
 
-$App = \Sharif\PhpCrudStarterKit\App::getInstance();
-
-// $App->create([ 'name' => 'Ahmed', 'email' => 'qyf9A@example.com' ]);
-// $App->delete(1725026277);
-// $App->update(1725026238, [ 'name' => 'Sharif', 'email' => 'sharif@example.com' ]);
-// print_r($App->show_single( 1725026560 ) );
+// $app->create([ 'name' => 'Ahmed', 'email' => 'qyf9A@example.com' ]);
+// $app->delete(1725026277);
+// $app->update(1725026238, [ 'name' => 'Sharif', 'email' => 'sharif@example.com' ]);
+// print_r($app->show_single( 1725026560 ) );
