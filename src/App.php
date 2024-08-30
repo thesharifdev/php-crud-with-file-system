@@ -4,8 +4,9 @@ namespace Sharif\PhpCrudStarterKit;
 
 class App
 {
+
     public static $instance;
-    private $jsonFile = "json_files/data.json"; 
+    private $data_location = "./data/json_files/data.json"; 
 
     /**
      * Singleton instance
@@ -25,24 +26,27 @@ class App
      * @param $data
      * @return string
      */
-    public function create($data){
-        if(!empty($newData)){ 
+    public function create($new_data){
+        
+        if(!empty($new_data)){ 
+            
             $id = time(); 
-            $newData['id'] = $id; 
-             
-            $jsonData = file_get_contents($this->jsonFile); 
-            $data = json_decode($jsonData, true); 
-             
-            $data = !empty($data)?array_filter($data):$data; 
+            $new_data['id'] = $id; 
+            $json_data = file_get_contents($this->data_location); 
+            $data = json_decode($json_data, true); 
+            $data = !empty($data) ? array_filter( $data ) :$ data; 
+
             if(!empty($data)){ 
-                array_push($data, $newData); 
+                array_push($data, $new_data); 
             }else{ 
-                $data[] = $newData; 
-            } 
-            $insert = file_put_contents($this->jsonFile, json_encode($data)); 
+                $data[] = $new_data; 
+            }
+
+            $insert = file_put_contents($this->data_location, json_encode($data)); 
              
-            return $insert?$id:false; 
+            return $insert ? $id : false; 
         }else{ 
+
             return false; 
         } 
     }
@@ -53,31 +57,35 @@ class App
      * @param $data
      * @return string
      */
-    public function update($data){
-        if(!empty($upData) && is_array($upData) && !empty($id)){ 
-            $jsonData = file_get_contents($this->jsonFile); 
-            $data = json_decode($jsonData, true); 
+    public function update($id, $updated_data){
+
+        if(!empty($updated_data) && is_array($updated_data) && !empty($id)){ 
+
+            $json_data = file_get_contents($this->data_location); 
+            $data = json_decode($json_data, true); 
              
             foreach ($data as $key => $value) { 
+
                 if ($value['id'] == $id) { 
-                    if(isset($upData['name'])){ 
-                        $data[$key]['name'] = $upData['name']; 
+                    if(isset($updated_data['name'])){ 
+                        $data[$key]['name'] = $updated_data['name']; 
                     } 
-                    if(isset($upData['email'])){ 
-                        $data[$key]['email'] = $upData['email']; 
+                    if(isset($updated_data['email'])){ 
+                        $data[$key]['email'] = $updated_data['email']; 
                     } 
-                    if(isset($upData['phone'])){ 
-                        $data[$key]['phone'] = $upData['phone']; 
+                    if(isset($updated_data['phone'])){ 
+                        $data[$key]['phone'] = $updated_data['phone']; 
                     } 
-                    if(isset($upData['country'])){ 
-                        $data[$key]['country'] = $upData['country']; 
+                    if(isset($updated_data['country'])){ 
+                        $data[$key]['country'] = $updated_data['country']; 
                     } 
                 } 
             } 
-            $update = file_put_contents($this->jsonFile, json_encode($data)); 
+            $update = file_put_contents($this->data_location, json_encode($data)); 
              
-            return $update?true:false; 
+            return $update ? true : false; 
         }else{ 
+
             return false; 
         } 
     }
@@ -88,15 +96,19 @@ class App
      * @param $data
      * @return string
      */
-    public function delete($data){
-        $jsonData = file_get_contents($this->jsonFile); 
-        $data = json_decode($jsonData, true); 
+    public function delete($id){
+
+        $json_data = file_get_contents($this->data_location); 
+        $data = json_decode($json_data, true); 
              
-        $newData = array_filter($data, function ($var) use ($id) { 
+        $new_data = array_filter($data, function ($var) use ($id) { 
+
             return ($var['id'] != $id); 
-        }); 
-        $delete = file_put_contents($this->jsonFile, json_encode($newData)); 
-        return $delete?true:false; 
+        });
+
+        $delete = file_put_contents($this->data_location, json_encode($new_data)); 
+
+        return $delete ? true : false; 
     }
 
     /**
@@ -105,28 +117,36 @@ class App
      * @return string
      */
     public function show(){
-        if(file_exists($this->jsonFile)){ 
-            $jsonData = file_get_contents($this->jsonFile); 
-            $data = json_decode($jsonData, true); 
+
+        if(file_exists($this->data_location)){ 
+            
+            $json_data = file_get_contents($this->data_location); 
+            $data = json_decode($json_data, true); 
              
-            if(!empty($data)){ 
+            if(!empty($data)){
+
                 usort($data, function($a, $b) { 
                     return $b['id'] - $a['id']; 
                 }); 
             } 
              
-            return !empty($data)?$data:false; 
+            return !empty($data) ? $data : false; 
         } 
+
         return false; 
     }
 
     public function show_single($id){
-        $jsonData = file_get_contents($this->jsonFile); 
-        $data = json_decode($jsonData, true); 
-        $singleData = array_filter($data, function ($var) use ($id) { 
+
+        $json_data = file_get_contents($this->data_location); 
+        $data = json_decode($json_data, true); 
+
+        $single_data = array_filter($data, function ($var) use ($id) { 
             return (!empty($var['id']) && $var['id'] == $id); 
         }); 
-        $singleData = array_values($singleData)[0]; 
-        return !empty($singleData)?$singleData:false; 
+
+        $single_data = array_values($singleData)[0]; 
+
+        return !empty($singleData) ? $single_data : false; 
     }
 }
