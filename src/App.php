@@ -6,7 +6,7 @@ class App
 {
 
     public static $instance;
-    private $data_location = "./data/json_files/data.json"; 
+    private $data_location = __DIR__."/data/json_files/data.json"; 
 
     /**
      * Singleton instance
@@ -34,7 +34,7 @@ class App
             $new_data['id'] = $id; 
             $json_data = file_get_contents($this->data_location); 
             $data = json_decode($json_data, true); 
-            $data = !empty($data) ? array_filter( $data ) :$ data; 
+            $data = !empty($data) ? array_filter( $data ) :$data; 
 
             if(!empty($data)){ 
                 array_push($data, $new_data); 
@@ -145,7 +145,9 @@ class App
             return (!empty($var['id']) && $var['id'] == $id); 
         }); 
 
-        $single_data = array_values($singleData)[0]; 
+        return $single_data;
+
+        $single_data = array_values($single_data)[0]; 
 
         return !empty($singleData) ? $single_data : false; 
     }
