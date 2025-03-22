@@ -136,6 +136,12 @@ class App
         return false; 
     }
 
+    /**
+     * Show single record
+     * 
+     * @param $id
+     * @return string
+     */
     public function show_single($id){
 
         $json_data = file_get_contents($this->data_location); 
@@ -150,5 +156,14 @@ class App
         $single_data = array_values($single_data)[0]; 
 
         return !empty($singleData) ? $single_data : false; 
+    }
+
+    /**
+     * Delete all records
+     * 
+     * @return string
+     */
+    public function delete_all(){
+        return unlink($this->data_location); 
     }
 }
